@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess the Number Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+    #message {
+      font-size: 18px;
+      margin-top: 20px;
+      color: #007acc;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Guess the Number!</h1>
+  <p>I'm thinking of a number between 1 and 100. Can you guess it?</p>
+
+  <input type="number" id="guess" min="1" max="100" />
+  <button onclick="checkGuess()">Guess</button>
+
+  <p id="message"></p>
+
+  <script>
+    const secretNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const userGuess = Number(document.getElementById('guess').value);
+      attempts++;
+
+      if (userGuess === secretNumber) {
+        document.getElementById('message').textContent = 
+          `🎉 Correct! You guessed it in ${attempts} tries.`;
+      } else if (userGuess < secretNumber) {
+        document.getElementById('message').textContent = "Too low! Try again.";
+      } else if (userGuess > secretNumber) {
+        document.getElementById('message').textContent = "Too high! Try again.";
+      } else {
+        document.getElementById('message').textContent = "Invalid input!";
+      }
+    }
+  </script>
+</body>
+</html>
